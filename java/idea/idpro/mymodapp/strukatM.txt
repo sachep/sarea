@@ -1,0 +1,34 @@
+mymodapp
+   \appsrc\appstart\appstart\mymodappdemo\ MyModAppDemo.java 
+                    module-info.java 
+module appstart{
+  requires appfuncs;
+  requires userfuncs;
+  uses userfuncs.binaryfuncs.BinFuncProvider;
+}
+
+          \appfuncs\appfuncs\simplefuncs\ SimpleMathFuncs.java 
+                    module-info.java 
+module appfuncs{
+  exports appfuncs.simplefuncs;
+}
+
+          \userfuncs\userfuncs\binaryfuncs\ BinaryFunc.java 
+                     module-info.java       BinFuncProvider.java 
+module userfuncs{
+  exports userfuncs.binaryfuncs;
+}
+
+
+          \userfuncsimp\userfuncsimp\binaryfuncsimp\ AbsPlus.java 
+                        module-info.java             AbsMinus.java
+                                                     AbsPlusProvider.java 
+                                                     AbsMinusProvider.java 
+module userfuncsimp{
+  requires userfuncs;
+
+  provides userfuncs.binaryfuncs.BinFuncProvider with
+        userfuncsimp.binaryfuncsimp.AbsPlusProvider,
+        userfuncsimp.binaryfuncsimp.AbsMinusProvider;
+}
+                      

@@ -1,0 +1,15 @@
+mymodapp
+   \appsrc\appstart\appstart\mymodappdemo\ MyModAppDemo.java 
+                    module-info.java 
+
+          \appfuncs\appfuncs\simplefuncs\ SimpleMathFuncs.java 
+                    module-info.java 
+
+          \userfuncs\userfuncs\binaryfuncs\ BinaryFunc.java 
+                     module-info.java       BinFuncProvider.java 
+
+          \userfuncsimp\userfuncsimp\binaryfuncsimp\ AbsPlus.java 
+                        module-info.java             AbsMinus.java
+                                                     AbsPlusProvider.java 
+                                                     AbsMinusProvider.java 
+                      

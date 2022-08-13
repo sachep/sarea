@@ -1,0 +1,28 @@
+//BinaryFunc.java 
+//данный интерфейс определ€ет функцию котора€ имеет
+//два аргумента типа int и возвращает результат типа int
+//это может быть люба€ бинарна€ операци€ с двум€ аргументами
+//типа int котора€ возвращает тип int
+
+package userfuncs.binaryfuncs;
+
+public interface BinaryFunc{
+  // определение имени функции
+  public String getName();
+
+  //это выполн€ема€ функци€ она будет 
+  //обеспечена конкретными реализаци€ми
+  public int func(int a, int b);
+}
+
+// BinFuncProvider.java 
+//этот интерфейс определ€ет структуру провайдера службы,
+// который возвращает экземпл€ры BinaryFunc
+//package userfuncs.binaryfuncs;
+
+import  userfuncs.binaryfuncs.BinaryFunc;
+
+public interface BinFuncProvider{
+  //получение экземпл€ра BinaryFunc
+  public BinaryFunc get();
+}

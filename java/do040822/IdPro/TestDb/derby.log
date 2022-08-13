@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Thu Jul 28 22:18:02 EEST 2022:
+ Производится загрузка Derby версии The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): экземпляр a816c00e-0182-463e-9317-00000730e3c8
+в каталоге базы данных C:\IdPro\TestDb\COREJAVA2 jdk.internal.loader.ClassLoaders$AppClassLoader@7530d0a 
+
+java.vendor=Oracle Corporation
+java.runtime.version=17.0.3.1+2-LTS-6
+user.dir=C:\IdPro\TestDb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Запущен загрузчик классов базы данных - derby.database.classpath=''

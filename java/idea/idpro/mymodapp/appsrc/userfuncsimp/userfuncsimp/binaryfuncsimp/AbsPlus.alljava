@@ -1,0 +1,70 @@
+//AbsPlus.java 
+//класс AbsPlus обеспечивает конкретную реализацию интрефейса
+//BinaryFunc . Он возвращает результат abs(a)+abs(b)
+
+package userfuncsimp.binaryfuncsimp;
+
+import userfuncs.binaryfuncs.BinaryFunc;
+
+public class AbsPlus implements BinaryFunc{
+
+  //возвращает имя функции
+  public String getName(){
+    return "absPlus";
+  }
+
+  //реализация AbsPlus
+  public int func(int a, int b){
+    return Math.abs(a)+Math.abs(b);
+  }
+}
+
+//AbsMinus.java
+//класс AbsMinus обеспечивает конкретную реализацию интрефейса
+//BinaryFunc . Он возвращает результат abs(a)-abs(b)
+
+package userfuncsimp.binaryfuncsimp;
+
+import userfuncs.binaryfuncs.BinaryFuncs;
+
+public class AbsMinus implements BinaryFuncs{
+
+  //возвращает имя функции
+  public String getName(){
+    return "absMinus";
+  }
+
+  //реализация AbsMinus
+  public int func(int a, int b){
+    return Math.abs(a)-Math.abs(b);
+  }
+}
+
+//AbsPlusProvider.java
+// провайдер для функции AbsPlus
+
+package userfuncsimp.binaryfuncsimp;
+
+import userfuncs.binaryfuncs.*;
+
+public class AbsPlusProvider implements BinFuncProvider{
+  // предоставляет объект AbsPlus
+  public BinaryFuncs get() {
+     return new AbsPlus();
+  }
+}
+
+//AbsMinusProvider.java
+// провайдер для функции AbsMinus
+
+package userfuncsimp.binaryfuncsimp;
+
+import userfuncs.binaryfuncs.*;
+
+public class AbsMinusProvider implements BinFuncProvider{
+  // предоставляет объект AbsMinus
+  public BinaryFuncs get() {
+     return new AbsMinus();
+  }
+}
+
