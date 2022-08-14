@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FxDB_OnurB_modSA.iml" filepath="$PROJECT_DIR$/FxDB_OnurB_modSA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/controller/controller.iml" filepath="$PROJECT_DIR$/src/controller/controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/start/start.iml" filepath="$PROJECT_DIR$/src/start/start.iml" />
+    </modules>
+  </component>
+</project>
