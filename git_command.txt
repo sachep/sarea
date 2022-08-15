@@ -1,0 +1,11 @@
+git config --global user.name "name usera"
+git config --global user.email "почта пользователя "
+git remote add origin https://github.com/sachep/sarea
+
+git status
+git add *.*
+git commit -m "комментарий"
+git push origin master
+git pull origin
+
+git clone https://github.com/sachep/sarea
