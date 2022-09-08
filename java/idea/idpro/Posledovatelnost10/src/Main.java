@@ -10,33 +10,52 @@
 class Solution{
     int s(int dl,int no){
         int otv=1;
-        int[] adl=new int[dl];
-        // вычисление необходимого количества итераций построения последовательности
-        int it=0;//кол иттераций для построения последовательности
+        // вычисление необходимого количества итераций
+        // построения последовательности
+        // и фактической ее длинны , чтоб меньше заданной
         int i=dl;//задана длина последовательности
+        int it=0;//кол иттераций для построения последовательности
         int dli=0;//истинная длинна последовательности что будет построена;
-        while(i>=0){
-            dli=dli+(int)Math.pow(2,it);
-            i=i-dli;
+        int st=0;// текущее значение степени числа 2
+        while(i>0){
+            st=(int)Math.pow(2,it);
+            dli=dli+st;
+            i=i-st;
             it++;
            // System.out.println(Math.pow(2,it-1)+" "+i+"  ит "+it);
         }
         it--;
-        dli=dli+1-(int)Math.pow(2,it);
+        dli=dli+1-st;//(int)Math.pow(2,it);
+        int[] adl=new int[dli];// создание массива нужной длинны
+        adl[0]=1; // первый член последовательности
+        int t=1;//текущее место откуда начинать заполнять иттерацию
+        int n;//
+        for (int j=1;j<=it;j++){
+            n=t; // запомнили текущее место
+            for(int m=0;m<n;m++){
+                adl[t]=adl[m]==1 ? 0:1;
+                //System.out.print(adl[t]+" ");
+                t++;
+            }
+            //System.out.println();
+        }
+        //for (int a:adl){
+        //    System.out.print(a+" ");
+        //}
         System.out.println("зад дл "+dl+" ист длинна посл "+dli+" иттера  "+it);
-        return otv;
+        return adl[no];
     }
 }
 
-
-
 public class Main {
     public static void main(String[] args) {
-        int dl;//длинна последовательности в памяти удет меньше чем - кратно иттерациям
-        int no;//искомый номер
+        int dl=110000000;//длинна последовательности в памяти будет меньше чем
+        // - кратно иттерациям и +1 первый
+        int no=33554431;//искомый номер
         Solution s=new Solution();
-        s.s(18,4);
+        //s.s(100,no);
 
-        System.out.println("Hello world!");
+        System.out.println(no+" й номер  послед равен "+s.s(dl,no));
+        //for (int w=1;w>0;){     }
     }
 }
