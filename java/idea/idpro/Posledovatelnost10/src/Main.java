@@ -46,13 +46,61 @@ class Solution{
         return adl[no];
     }
 }
+// Solution2 -массив реализован побитово в типе byte - т.е. в по 4х8 =
+// в 32 раза экономнее по памяти
+class Solution2{
+
+
+    int s(int dl,int no){
+        int otv=1;
+        // вычисление необходимого количества итераций
+        // построения последовательности
+        // и фактической ее длинны , чтоб меньше заданной
+        int i=dl;//задана длина последовательности
+        int it=0;//кол иттераций для построения последовательности
+        int dli=0;//истинная длинна последовательности что будет построена;
+        int st=0;// текущее значение степени числа 2
+        while(i>0){
+            st=(int)Math.pow(2,it);
+            dli=dli+st;
+            i=i-st;
+            it++;
+            // System.out.println(Math.pow(2,it-1)+" "+i+"  ит "+it);
+        }
+        it--;
+        dli=dli+1-st;//истинная длинна массива
+        int dlib=dli/8;//ист длинна массива в байтах
+        byte [] adl=new byte[dlib];// создание массива нужной длинны но в байтах
+        adl[0]=(byte)0B10010110; // первый член последовательности 1001 0110
+        int t=1;//текущее место откуда начинать заполнять иттерацию
+        int n;//
+
+        /*
+        for (int j=1;j<=it;j++){
+            n=t; // запомнили текущее место
+            for(int m=0;m<n;m++){
+                adl[t]=adl[m]==1 ? 0:1;
+                //System.out.print(adl[t]+" ");
+                t++;
+            }
+            //System.out.println();
+        }
+        */
+        //for (int a:adl){
+        //    System.out.print(a+" ");
+        //}
+        System.out.println("зад дл "+dl+" ист длинна посл "+dli+" иттера  "+it);
+        return adl[no];
+    }
+}
 
 public class Main {
     public static void main(String[] args) {
         int dl=110000000;//длинна последовательности в памяти будет меньше чем
         // - кратно иттерациям и +1 первый
-        int no=33554431;//искомый номер
-        Solution s=new Solution();
+        int no=1;//33554431;//искомый номер
+        //Solution s=new Solution();//последовательность в целых чиселах
+        Solution2 s=new Solution2();//последовательность в битах
         //s.s(100,no);
 
         System.out.println(no+" й номер  послед равен "+s.s(dl,no));
