@@ -72,33 +72,43 @@ class Solution2 {
         int dlib = dli / 8;//ист длинна массива в байтах
         byte[] adl = new byte[dlib];// создание массива нужной длинны но в байтах
         adl[0] = (byte) 0B10010110; // первый член последовательности 1001 0110
-        ShowBits vb = new ShowBits(64);
-        vb.show(-2139999999);
+        // это сразу выполнено 3 иттерации поэтому отнимем от от необх иттераций 3
+        it = it - 3;
+        ShowBits vb = new ShowBits(8);
+        System.out.println(vb.getbit(2, 1));
+        vb.show(2);
+        System.out.println();
+        int aaa = 1;
+        aaa <<= 1;
+        vb.show(aaa);
+        System.out.println();
         int t = 1;//текущее место откуда начинать заполнять иттерацию
         int n;//
 
-        /*
-        for (int j=1;j<=it;j++){
-            n=t; // запомнили текущее место
-            for(int m=0;m<n;m++){
-                adl[t]=adl[m]==1 ? 0:1;
-                //System.out.print(adl[t]+" ");
+        // формируем последовательность
+        for (int j = 1; j <= it; j++) {
+            n = t; // запомнили текущее место
+            for (int m = 0; m < n; m++) {
+                adl[t] = (byte) ~adl[m];//записываем байты с обращением битов
+                //System.out.print(adl[t]+" gg");
                 t++;
             }
             //System.out.println();
         }
-        */
-        //for (int a:adl){
-        //    System.out.print(a+" ");
-        //}
+
+        for (int a : adl) {
+            System.out.print(" ");
+            vb.show(a);
+        }
         System.out.println("зад дл " + dl + " ист длинна посл " + dli + " иттера  " + it);
+
         return adl[no];
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        int dl = 110000000;//длинна последовательности в памяти будет меньше чем
+        int dl = 64;//длинна последовательности в памяти будет меньше чем
         // - кратно иттерациям и +1 первый
         int no = 1;//33554431;//искомый номер
         //Solution s=new Solution();//последовательность в целых чиселах
