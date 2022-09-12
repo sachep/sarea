@@ -12,15 +12,19 @@ public class ShowBits {
     int getbit(long val, int bn) {
         long mask = 1;
         mask <<= bn;
-        System.out.println("val== " + val + "  bn " + bn + " mask = " + mask + "  v&m==1 " + ((val & mask) == 1));
-        return ((val & mask) == 1) ? 0 : 1;
+        //System.out.println("val== " + val + "  bn " + bn + " mask = " + mask + "  v&m!=0 " + ((val & mask) != 0) + " " + (val & mask));
+        //show(val);
+        //System.out.println();
+        //show(mask);
+        //System.out.println();
+        return ((val & mask) != 0) ? 1 : 0;
     }
 
     // вернуть вывод побитового представления
     void show(long val) {
         long mask = 1;
         // сдвиг значения влево на нужную позицию
-        mask <<= numbits - 1;
+        mask <<= (numbits - 1);
         int spacer = 0;
         for (; mask != 0; mask >>>= 1) {   // mask>>>=1  сдвиг вправо с заполнение справа
             // нулями   и с присвоением переменной нового значения

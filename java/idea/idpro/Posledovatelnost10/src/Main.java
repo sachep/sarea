@@ -65,7 +65,6 @@ class Solution2 {
             dli = dli + st;
             i = i - st;
             it++;
-            // System.out.println(Math.pow(2,it-1)+" "+i+"  ит "+it);
         }
         it--;
         dli = dli + 1 - st;//истинная длинна массива
@@ -75,13 +74,7 @@ class Solution2 {
         // это сразу выполнено 3 иттерации поэтому отнимем от от необх иттераций 3
         it = it - 3;
         ShowBits vb = new ShowBits(8);
-        System.out.println(vb.getbit(2, 1));
-        vb.show(2);
-        System.out.println();
         int aaa = 1;
-        aaa <<= 1;
-        vb.show(aaa);
-        System.out.println();
         int t = 1;//текущее место откуда начинать заполнять иттерацию
         int n;//
 
@@ -90,32 +83,29 @@ class Solution2 {
             n = t; // запомнили текущее место
             for (int m = 0; m < n; m++) {
                 adl[t] = (byte) ~adl[m];//записываем байты с обращением битов
-                //System.out.print(adl[t]+" gg");
                 t++;
             }
-            //System.out.println();
         }
 
-        for (int a : adl) {
-            System.out.print(" ");
-            vb.show(a);
-        }
+        //for (int a : adl) {
+        //    System.out.print(" ");
+        //    vb.show(a);
+        //}
+        System.out.println();
         System.out.println("зад дл " + dl + " ист длинна посл " + dli + " иттера  " + it);
+        System.out.println("no/8 " + no / 8 + " ,бит №  " + (7 - (no % 8)));
+        return vb.getbit(adl[no / 8], 7 - (no % 8));
 
-        return adl[no];
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        int dl = 64;//длинна последовательности в памяти будет меньше чем
+        int dl = 2100000000;//длинна последовательности в памяти будет меньше чем
         // - кратно иттерациям и +1 первый
-        int no = 1;//33554431;//искомый номер
-        //Solution s=new Solution();//последовательность в целых чиселах
+        int no = 1;//искомый номер
+        //Solution s = new Solution();//последовательность в целых чиселах
         Solution2 s = new Solution2();//последовательность в битах
-        //s.s(100,no);
-
         System.out.println(no + " й номер  послед равен " + s.s(dl, no));
-        //for (int w=1;w>0;){     }
     }
 }
