@@ -8,7 +8,9 @@ class Solution {
         int sum = 0;
         for (int a : nums) {
             sum += a;
+            System.out.print("      "+a);
         }
+        System.out.println();
         System.out.println("Sum =" + sum);
         if (sum % 2 == 1) {
             return false;
@@ -22,16 +24,18 @@ class Solution {
         for (int j = 1; j <= sum; j++) {
             bo[j][0] = false;
         }
+        /*
         for (int i = 0; i <= sum; i++) {
             for (int j = 0; j <= n; j++) {
                 System.out.print(bo[i][j] + "  ");
             }
             System.out.println();
         }
+        */
         for (int i = 1; i <= sum; i++) {
             for (int j = 1; j <= n; j++) {
-                if (i <= nums[j - 1]) {
-                    bo[i][j] = bo[i][j] || bo[i - nums[j - 1]][j - 1];
+                if (i >= nums[j - 1]) {
+                    bo[i][j] = bo[i][j-1] || bo[i - nums[j - 1]][j - 1];
                 } else {
                     bo[i][j] = bo[i][j - 1];
                 }
@@ -40,22 +44,30 @@ class Solution {
             //System.out.println();
         }
 
-/*
+
         System.out.println();
+        int c=0;
         for (boolean[] a : bo) {
+            System.out.print(c+" ");
             for (boolean b : a) {
                 System.out.print(b + "  ");
             }
+            c++;
             System.out.println();
         }
-*/
+
         return bo[sum][n];
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        int[] ar = {1, 5, 11, 5};
+        ///int[] ar = {2, 5, 10, 5};
+        int[] ar = {1, 2, 3,4};
+        //int[] ar = {1, 2, 1, 6};
+        ///int[] ar = {1, 2,3, 11, 5};
+        ///int[] ar = {3, 1,1,2,2,1};
+
         Solution s = new Solution();
 
         System.out.println(" Можно разделить на равные по сумме части? ");
