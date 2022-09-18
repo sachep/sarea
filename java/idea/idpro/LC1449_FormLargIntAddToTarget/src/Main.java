@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 class Solution {
     public String largestNumber(int[] cost, int target) {
-        int[][] dp = new int[10][10];//5001
+        int[][] dp = new int[3][11];//5001
         Arrays.fill(dp[0], -1);
 
         for (int i = 1; i <= cost.length; i++) {
@@ -33,8 +33,8 @@ class Solution {
                 }
             }
         }
-        if (dp[9][target] == -1) return "0";
-        int i = 9, j = target;
+        if (dp[cost.length][target] == -1) return "0";
+        int i = cost.length, j = target;
         StringBuilder result = new StringBuilder();
         while (target > 0) {
 
@@ -55,11 +55,11 @@ class Solution {
 
 public class Main {
     public static void main(String[] args) {
-        //int ta = 50;
-        //int[] co = {10, 20, 30, 40, 50, 60, 70, 80, 90};
+        int ta = 10;
+        int[] co = {  3,  5};
 
-        int ta = 9;
-        int[] co = {4,3,2,5,6,7,2,5,5};
+        //int ta = 9;
+        //int[] co = {4,3,2,5,6,7,2,5,5};
         Solution so = new Solution();
 
         System.out.println("Решение: " + so.largestNumber(co, ta));
