@@ -44,6 +44,7 @@ class Solution{
             for(int j=0; j < cols; j++) {
                 if(grid[i].charAt(j) == '@') {
                     queue.add(new Node(i , j , ""));
+                    System.out.println("Node @");
                 }
                 else if(grid[i].charAt(j)>= 'a' && grid[i].charAt(j) <= 'f') {
                     keyCount++;
@@ -58,17 +59,22 @@ class Solution{
                 int r = temp.row;
                 int c = temp.col;
                 String key = temp.key;
-                if(!visited.contains(temp.toString(r , c , key)))
-                    visited.add(temp.toString(r , c, key));
-                else
+                System.out.println(r+":"+c+":"+key+":");
+                if(!visited.contains(temp.toString(r , c , key))) {
+                    visited.add(temp.toString(r, c, key));
+                    System.out.println("visited.add "+r+":"+c+":"+key+":");
+                }
+                else {
+                    System.out.println("Пропущено");
                     continue;
-
+                }
                 if(key.length() == keyCount)
                     return steps;
 
                 for(int[] dir : dirs) {
                     int nr = r+dir[0];
                     int nc = c+dir[1];
+                    System.out.println("dir "+nr+":"+nc);
                     Node newNode = new Node(nr , nc , key);
                     if(nr<0 || nr>=rows || nc<0 || nc >=cols || grid[nr].charAt(nc) == '#' || visited.contains(newNode.toString(nr , nc , key))) {
                         continue;
@@ -77,12 +83,17 @@ class Solution{
                     char ch = grid[nr].charAt(nc);
                     if(key.indexOf(ch) == -1 && ch >= 'a' &&  ch <= 'f') {
                         queue.add(new Node(nr , nc , key+ch));
+                        System.out.println("Node "+nc+":"+nr+":"+key+":"+ch);
+
                     }
                     else if( ch>='A' && ch <= 'F' && key.indexOf(Character.toLowerCase(ch)) == -1)  {
                         continue;
                     }
-                    else
+                    else {
                         queue.add(new Node(nr , nc , key));
+                        System.out.println("Node "+nc+":"+nr+":"+key);
+
+                    }
                 }
             }
             steps+=1;
