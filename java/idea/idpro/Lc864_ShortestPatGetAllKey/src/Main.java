@@ -50,7 +50,6 @@ class Solution{
                 }
             }
         }
-
         while(!queue.isEmpty()) {
             int size = queue.size();
             System.out.println("размер очереди на данный момент "+size);
@@ -77,36 +76,34 @@ class Solution{
                     System.out.println("Цикл по направлениям dir "+nr+":"+nc);
                     Node newNode = new Node(nr , nc , key);
                     if(nr<0 || nr>=rows || nc<0 || nc >=cols || grid[nr].charAt(nc) == '#' || visited.contains(newNode.toString(nr , nc , key))) {
+                        System.out.println("за полем или стена или тут были");
                         continue;
                     }
-
                     char ch = grid[nr].charAt(nc);
                     if(key.indexOf(ch) == -1 && ch >= 'a' &&  ch <= 'f') {
                         queue.add(new Node(nr , nc , key+ch));
-                        System.out.println("добавили в очередь с ключем Node "+nc+":"+nr+":"+key+":"+ch);
-
+                        System.out.println("добавили в очередь с ключем Node "+nr+":"+nc+":"+key+":"+ch);
                     }
                     else if( ch>='A' && ch <= 'F' && key.indexOf(Character.toLowerCase(ch)) == -1)  {
                         System.out.println(" нашли звмок а ключа нет - пропущено");
                         continue;
-                    }
-                    else {
+                        }
+                        else {
                         queue.add(new Node(nr , nc , key));
-                        System.out.println("добавили в очередь без ключа Node "+nc+":"+nr+":"+key);
-
-                    }
+                        System.out.println("добавили в очередь без ключа Node "+nr+":"+nc+":"+key);
+                         }
                 }
             }
             steps+=1;
+            System.out.println("Увеличили счетчик шагов ="+steps);
         }
         return -1;
     }
 }
-
 public class Main {
     public static void main(String[] args) {
-                String[] grid= {"@.a..","###.#","b.A.B"}; // оригинальное усл задачи ответ 8
-        //String[] grid= {"@#a..",".....","b#A.B"}; //
+               // String[] grid= {"@.a..","###.#","b.A.B"}; // оригинальное усл задачи ответ 8
+        String[] grid= {"@.a..","#A#..","b...B"}; //
         Solution s=new Solution();
         System.out.println("Ходов: "+s.shortestPathAllKeys(grid));
     }
