@@ -1,0 +1,76 @@
+import java.util.Arrays;
+
+// LC735 Коллизии астероидов
+// есть массив целых чисел , положительных и отрицательных
+// знак указывает на направление движения минус - влево, плюс - вправо
+// абсолютное значение  - размер астероида , все они  имеют одинаковую скорость
+// при встрече разных по знаку меньший исчезает, если размеры одинаковы - исчезают оба
+// одинкаовые знаки не взаимодействуют
+// вывести что останется после всех взаимодействий
+class Sol{
+    public int[] astCol(int[] as){
+        int size=as.length;
+        int pos=0;
+        int neg=0;
+        int countpos=0;
+        int ustneg=0;
+        while (pos!=size){
+
+            if(as[pos]<0 && countpos==0){//прошли все отрицательные
+                pos++;
+                continue;
+            }
+            if (as[pos]>0 && ustneg==0){//нашли положительный
+               countpos++;
+               pos++;
+               continue;
+            }
+            if (as[pos]<0 && countpos!=0) {// первый отрицательный после положиельного
+                pos--;
+                countpos--;
+                ustneg=1;
+                continue;
+                //System.out.println(as[pos]);
+            }
+            if((neg<=pos || as[neg]>=0 )&& neg<size){
+                neg++;
+                //continue;
+            }
+            if(pos<neg) {
+               ustneg=0;
+                if (Math.abs(as[pos]) > Math.abs(as[neg])) {// взаимодействие астероидов
+                    as[neg] = 0;
+                } else {
+                    if (Math.abs(as[pos]) < Math.abs(as[neg])) {
+                        as[pos] = 0;
+                    } else {
+                        as[pos] = 0;
+                        as[neg] = 0;
+                    }
+                }
+                //continue;
+            }
+            if(as[pos]==0 && countpos!=0){
+                   pos--;
+                   countpos--;
+                   ustneg=1;
+                   continue;
+             }
+
+
+
+        }
+
+    return as;
+    }
+
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        int[] ast={-5,-6,3,5,-4,-8,6,-3,-4,5};
+        Sol so=new Sol();
+        System.out.println("Остались: "+ Arrays.toString(so.astCol(ast)));
+    }
+}
