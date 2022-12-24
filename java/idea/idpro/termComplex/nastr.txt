@@ -1,0 +1,9 @@
+push: pu, p
+delete: de ,d, del
+print  : pr,pri
+revers: r
++: plus
+-: minu
+*: umno
+/: dele
+quit:q

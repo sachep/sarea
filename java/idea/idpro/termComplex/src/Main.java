@@ -1,7 +1,7 @@
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.Stack;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
 // терминал Настин - переделано в работу с комплексными числами 18.12.2022
 // и выполнение с ними  операций
@@ -34,7 +34,6 @@ class Complex {// класс элементов стека - комплексн�
             if (imag > 0) {
                 probel = "+";
             }
-            ;
             display = display + probel + imag + "i";
         }
         if (real == 0 & imag == 0) {
@@ -82,22 +81,73 @@ class Complex {// класс элементов стека - комплексн�
 }
 
 class Sol {  //здесь собственно главный метод выполнения
-    Stack<Complex> stackComplex = new Stack<Complex>();// стек
+    Stack<Complex> stackComplex = new Stack<>();// стек
+    Map<String, String> comandy = new HashMap<>();
+
+    // считывание текстового файла и запись его в хешмап
+    void FileToHashMap(String nameFile, Map hash) {
+        String strIzFila;
+        int nomerStroki = 0;
+        System.out.println("Выполнение действий с числами и комплексными числами");
+        System.out.println("  действительная и мнимая часть вводится через пробел");
+        System.out.println("  Выход по команде:  quit или q");
+        System.out.println("  Допустимы команды и их сокращения и альтернативы:");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("nastr.txt"));
+            while ((strIzFila = br.readLine()) != null) {
+                nomerStroki++;
+                System.out.println(strIzFila);
+                String[] splited = strIzFila.split(":");//находим разделитель :
+                //System.out.println(splited.length);
+                if (splited.length == 2) {
+                    String[] splitedKey = splited[1].split(",");// находим по разделителям ,
+                    //  System.out.println(splitedKey.length);
+                    for (String key : splitedKey) {
+                        hash.put(key.trim(), splited[0].trim());
+                    }
+                } else {
+                    System.out.println("Ошибка в настройках - нет разделителя  :  , строка " + nomerStroki);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка открытия файла: ***" + nameFile + "*** " + e);
+        }
+        // System.out.println(hash);
+    }
+
+    String zamenaComandy(Map spisokComand, String inputString) {
+        if (spisokComand.containsKey(inputString)) {
+            //System.out.println("ключ есть "+spisokComand.containsKey(inputString));//{
+            //System.out.println("значение есть "+spisokComand.containsValue(inputString));//{
+            //System.out.println("значение по ключу "+spisokComand.get(inputString));
+            return spisokComand.get(inputString).toString();
+        }
+        return inputString;
+    }
 
     public void work() {//собственно отсюда все работает
+        FileToHashMap("nastr.txt", comandy);
         Scanner in = new Scanner(System.in);// переменная для ввода данных
         String vvstr; //строка введенная
         while (true) {// цикл опроса ввода
             vvstr = in.nextLine();
-            if (Objects.equals(vvstr, "-1")) {//выход из цикла опроса
-                System.out.println("Выход по команде -1 ");
-                break;
-            }
+//            if (Objects.equals(vvstr, "-1")) {//выход из цикла опроса
+//                System.out.println("Выход по команде -1 ");
+//                break;
+//            }
             String[] splited = vvstr.split(" ");//в классе String есть такой
             // метод разбивающий строку на составляющие по разделителю
+// 21.12.22 ниже заменяем введенную команду, если возможно,
+// на нужную которая используется в switch,
+// из списка разрешенных к использованию, содержащихся в файле настроек
+            splited[0] = zamenaComandy(comandy, splited[0]);//
+            if(splited[0].equals("quit")){
+                System.out.println("Выход по комнде quit");
+                break;
+            }
             switch (splited[0]) {
                 case "push":
-                    System.out.println("Push");
+                    System.out.println("push");
                     if (splited.length > 1) {// есть 2-я подстрока во введенных данных
                         int real, imag;
                         try {//проверка можно ли взять число из введенного 1 параметра
@@ -132,8 +182,8 @@ class Sol {  //здесь собственно главный метод вып�
                         System.out.println(currentComplex);
                     }
                     break;
-                case "del":
-                    System.out.println("del");
+                case "delete":
+                    System.out.println("delete");
                     try {
                         Complex currentComplex = stackComplex.pop();
                         System.out.println(currentComplex + "   удалено из стека");
@@ -141,8 +191,8 @@ class Sol {  //здесь собственно главный метод вып�
                         System.out.println("нечего удалять!");
                     }
                     break;
-                case "rev":
-                    System.out.println("rev");
+                case "revers":
+                    System.out.println("revers");
                     Collections.reverse(stackComplex);
                     System.out.println("реверс данных в стеке:");
                     for (Complex currentComplex : stackComplex) {
