@@ -85,7 +85,7 @@ class Sol {  //здесь собственно главный метод вып�
     Map<String, String> comandy = new HashMap<>();
 
     // считывание текстового файла и запись его в хешмап
-    void FileToHashMap(String nameFile, Map hash) {
+    void FileToHashMap(String nameFile, Map<String,String> hash) {
         String strIzFila;
         int nomerStroki = 0;
         System.out.println("Выполнение действий с числами и комплексными числами");
@@ -115,12 +115,12 @@ class Sol {  //здесь собственно главный метод вып�
         // System.out.println(hash);
     }
 
-    String zamenaComandy(Map spisokComand, String inputString) {
+    String zamenaComandy(Map<String,String> spisokComand, String inputString) {
         if (spisokComand.containsKey(inputString)) {
             //System.out.println("ключ есть "+spisokComand.containsKey(inputString));//{
             //System.out.println("значение есть "+spisokComand.containsValue(inputString));//{
             //System.out.println("значение по ключу "+spisokComand.get(inputString));
-            return spisokComand.get(inputString).toString();
+            return spisokComand.get(inputString);//.toString();
         }
         return inputString;
     }
