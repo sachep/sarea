@@ -1,0 +1,10 @@
+push: push, pu, p
+delete: delete, de ,d, del
+print  : print, pr,pri
+revers: revers, r
++: +,plus
+-: -,minu
+*: *,umno
+/: /,dele
+quit:quit,q
+executeAll : executeAll, ea
